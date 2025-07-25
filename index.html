@@ -10,6 +10,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     
     <style>
+        /* -------------------------------------------------------------------------- */
+        /* VARIÁVEIS DE TEMA                           */
+        /* -------------------------------------------------------------------------- */
         :root {
             --bg-color: #f4f4f4; --container-bg-color: #fff; --text-color: #333;
             --box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); --input-border-color: #ddd;
@@ -41,43 +44,23 @@
             --filter-btn-active-bg: var(--add-btn-bg);
             --legend-btn-bg: #495057; --legend-btn-hover-bg: #343a40;
         }
-        body {
-            font-family: 'Roboto', sans-serif; background-color: var(--bg-color);
-            color: var(--text-color); display: flex; justify-content: center;
-            align-items: center; min-height: 100vh; margin: 0; padding: 20px 0;
-            transition: background-color 0.3s ease, color 0.3s ease;
-        }
+        
+        /* -------------------------------------------------------------------------- */
+        /* ESTILOS GERAIS                              */
+        /* -------------------------------------------------------------------------- */
+        body { font-family: 'Roboto', sans-serif; background-color: var(--bg-color); color: var(--text-color); display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; padding: 20px 0; transition: background-color 0.3s ease, color 0.3s ease; }
         .container { background-color: var(--container-bg-color); padding: 30px; border-radius: 8px; box-shadow: var(--box-shadow); width: 100%; max-width: 600px; text-align: center; transition: background-color 0.3s ease, box-shadow 0.3s ease; }
         .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
         .header h1 { text-align: left; margin: 0; font-size: 1.8em; }
-        #theme-toggle-btn { padding: 8px 12px; color: white; border: none; border-radius: 4px; cursor: pointer; transition: background-color 0.3s ease; background-color: var(--theme-toggle-btn-bg); }
-        #theme-toggle-btn:hover { background-color: var(--theme-toggle-btn-hover-bg); }
         .input-area { display: flex; margin-bottom: 20px; }
         .input-area form { display: flex; width: 100%; }
         #task-input, .edit-input { flex-grow: 1; padding: 10px; border: 1px solid var(--input-border-color); border-radius: 4px 0 0 4px; outline: none; background-color: var(--container-bg-color); color: var(--text-color); transition: all 0.3s ease; }
-        #add-task-btn { padding: 10px 15px; background-color: var(--add-btn-bg); color: white; border: none; border-radius: 0 4px 4px 0; cursor: pointer; transition: background-color 0.3s ease; }
-        #add-task-btn:hover { background-color: var(--add-btn-hover-bg); }
-        .week-tabs { display: flex; margin-bottom: 15px; overflow-x: auto; }
-        .tab { flex: 1; padding: 10px; border: none; background-color: var(--tab-bg); color: var(--tab-text); cursor: pointer; transition: all 0.3s ease; border-bottom: 3px solid transparent; font-weight: bold; }
-        .tab:first-child { border-radius: 4px 0 0 4px; }
-        .tab:last-child { border-radius: 0 4px 4px 0; }
-        .tab.active { background-color: var(--container-bg-color); border-bottom-color: var(--tab-active-bg); color: var(--text-color); }
-        .tab span { font-weight: normal; font-size: 0.9em; opacity: 0.8; margin-left: 4px; }
         
-        .view-filters { display: flex; gap: 10px; margin-bottom: 20px; justify-content: center; }
-        .filter-btn { background-color: var(--tab-bg); color: var(--tab-text); border: none; padding: 5px 15px; border-radius: 20px; cursor: pointer; transition: all 0.3s ease; }
-        .filter-btn.active { background-color: var(--filter-btn-active-bg); color: white; font-weight: bold; }
-        
-        #task-list { list-style: none; padding: 0; margin: 0; min-height: 150px; }
-        #task-list li { background-color: var(--list-item-bg); padding: 10px; border: 1px solid var(--list-item-border); border-radius: 4px; margin-bottom: 8px; display: flex; align-items: center; gap: 10px; word-break: break-word; color: var(--text-color); transition: all 0.3s ease; }
-        .task-checkbox { width: 20px; height: 20px; border: 2px solid var(--checkbox-border); background-color: var(--checkbox-bg); border-radius: 4px; cursor: pointer; display: flex; justify-content: center; align-items: center; flex-shrink: 0; }
-        .task-checkbox::before { content: ''; display: none; width: 10px; height: 10px; background-color: var(--checkbox-checked-color); clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%); }
-        .task-checkbox.checked::before { display: block; }
-        #task-list li .task-text { flex-grow: 1; text-align: left; cursor: pointer; }
-        #task-list .task-actions { display: flex; gap: 5px; }
-        #task-list li.completed .task-text { text-decoration: line-through; color: var(--completed-text-color); }
-        #task-list li.completed { background-color: var(--completed-bg); }
+        /* -------------------------------------------------------------------------- */
+        /* COMPONENTES: BOTÕES                             */
+        /* -------------------------------------------------------------------------- */
         .delete-btn, .edit-btn, .save-btn, .postpone-btn, #legend-btn { color: white; border: none; padding: 5px 10px; border-radius: 4px; cursor: pointer; transition: background-color 0.3s ease; display: flex; align-items: center; justify-content: center; }
+        .save-btn svg, .edit-btn svg, .postpone-btn svg, #legend-btn svg { width: 16px; height: 16px; fill: white; }
         .delete-btn { background-color: var(--delete-btn-bg); }
         .delete-btn:hover { background-color: var(--delete-btn-hover-bg); }
         .edit-btn { background-color: var(--edit-btn-bg); }
@@ -86,19 +69,50 @@
         .save-btn:hover { background-color: var(--save-btn-hover-bg); }
         .postpone-btn { background-color: var(--postpone-btn-bg); }
         .postpone-btn:hover { background-color: var(--postpone-btn-hover-bg); }
-        #legend-btn { background-color: var(--legend-btn-bg); padding: 8px; }
-        #legend-btn:hover { background-color: var(--legend-btn-hover-bg); }
-        .save-btn svg, .edit-btn svg, .postpone-btn svg, #legend-btn svg { width: 16px; height: 16px; fill: white; }
-        .no-tasks-message { text-align: center; color: var(--completed-text-color); padding: 40px 0; }
-        
-        .footer-controls { display: flex; justify-content: space-between; align-items: center; margin-top: 25px; }
-        .footer-buttons { display: flex; gap: 10px; }
+        #theme-toggle-btn { padding: 8px 12px; color: white; border: none; border-radius: 4px; cursor: pointer; transition: background-color 0.3s ease; background-color: var(--theme-toggle-btn-bg); }
+        #theme-toggle-btn:hover { background-color: var(--theme-toggle-btn-hover-bg); }
+        #add-task-btn { padding: 10px 15px; background-color: var(--add-btn-bg); color: white; border: none; border-radius: 0 4px 4px 0; cursor: pointer; transition: background-color 0.3s ease; }
+        #add-task-btn:hover { background-color: var(--add-btn-hover-bg); }
         #history-btn { background-color: var(--history-btn-bg); color: white; border: none; border-radius: 4px; cursor: pointer; transition: background-color 0.3s ease; padding: 8px 12px; }
         #history-btn:hover { background-color: var(--history-btn-hover-bg); }
+        #legend-btn { background-color: var(--legend-btn-bg); padding: 8px; }
+        #legend-btn:hover { background-color: var(--legend-btn-hover-bg); }
+        .filter-btn { background-color: var(--tab-bg); color: var(--tab-text); border: none; padding: 5px 15px; border-radius: 20px; cursor: pointer; transition: all 0.3s ease; }
+        .filter-btn.active { background-color: var(--filter-btn-active-bg); color: white; font-weight: bold; }
+
+        /* -------------------------------------------------------------------------- */
+        /* COMPONENTES: ABAS E LISTA                         */
+        /* -------------------------------------------------------------------------- */
+        .week-tabs { display: flex; margin-bottom: 15px; overflow-x: auto; }
+        .tab { flex: 1; padding: 10px; border: none; background-color: var(--tab-bg); color: var(--tab-text); cursor: pointer; transition: all 0.3s ease; border-bottom: 3px solid transparent; font-weight: bold; }
+        .tab:first-child { border-radius: 4px 0 0 4px; }
+        .tab:last-child { border-radius: 0 4px 4px 0; }
+        .tab.active { background-color: var(--container-bg-color); border-bottom-color: var(--tab-active-bg); color: var(--text-color); }
+        .tab span { font-weight: normal; font-size: 0.9em; opacity: 0.8; margin-left: 4px; }
+        .view-filters { display: flex; gap: 10px; margin-bottom: 20px; justify-content: center; }
+        #task-list { list-style: none; padding: 0; margin: 0; min-height: 150px; }
+        #task-list li { background-color: var(--list-item-bg); padding: 10px; border: 1px solid var(--list-item-border); border-radius: 4px; margin-bottom: 8px; display: flex; align-items: center; gap: 10px; word-break: break-word; color: var(--text-color); transition: all 0.3s ease; }
+        #task-list li .task-text { flex-grow: 1; text-align: left; cursor: pointer; }
+        #task-list .task-actions { display: flex; gap: 5px; }
+        #task-list li.completed .task-text { text-decoration: line-through; color: var(--completed-text-color); }
+        #task-list li.completed { background-color: var(--completed-bg); }
+        .task-checkbox { width: 20px; height: 20px; border: 2px solid var(--checkbox-border); background-color: var(--checkbox-bg); border-radius: 4px; cursor: pointer; display: flex; justify-content: center; align-items: center; flex-shrink: 0; }
+        .task-checkbox::before { content: ''; display: none; width: 10px; height: 10px; background-color: var(--checkbox-checked-color); clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%); }
+        .task-checkbox.checked::before { display: block; }
+        .no-tasks-message { text-align: center; color: var(--completed-text-color); padding: 40px 0; }
+        
+        /* -------------------------------------------------------------------------- */
+        /* COMPONENTES: RODAPÉ                           */
+        /* -------------------------------------------------------------------------- */
+        .footer-controls { display: flex; justify-content: space-between; align-items: center; margin-top: 25px; }
+        .footer-buttons { display: flex; gap: 10px; }
         .datetime-container { display: flex; gap: 15px; }
         .display-item { color: var(--text-color); font-size: 0.9em; opacity: 0.8; background-color: var(--list-item-bg); padding: 5px 10px; border-radius: 4px; display: flex; align-items: center; gap: 8px; }
         .display-item .icon { width: 1.2em; height: 1.2em; fill: currentColor; }
         
+        /* -------------------------------------------------------------------------- */
+        /* COMPONENTES: MODAIS                           */
+        /* -------------------------------------------------------------------------- */
         .modal-overlay { position: fixed; z-index: 100; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); display: flex; justify-content: center; align-items: center; padding: 20px; }
         .modal-content { background: var(--container-bg-color); color: var(--text-color); padding: 25px; border-radius: 8px; width: 100%; max-width: 600px; max-height: 85vh; overflow-y: auto; position: relative; box-shadow: var(--box-shadow); }
         .modal-content h2 { margin-top: 0; }
@@ -109,13 +123,14 @@
         .modal-content li span:first-child { color: var(--completed-text-color); margin-right: 8px; }
         .modal-content li strong { color: var(--add-btn-bg); }
         .modal-content p { text-align: center; color: var(--completed-text-color); }
-        
         .legend-list { padding: 0; list-style: none; }
         .legend-item { display: flex; align-items: center; gap: 15px; padding: 10px 0; border-bottom: 1px solid var(--input-border-color); }
         .legend-item:last-child { border-bottom: none; }
         .legend-icon { flex-shrink: 0; }
         .planning-prompt-content { padding: 20px; text-align: center; }
         .planning-prompt-content h2 { margin-bottom: 20px; }
+        .modal-content .back-to-top-btn { margin-top: 15px; background-color: var(--theme-toggle-btn-bg); font-weight: normal; }
+        .modal-content .back-to-top-btn:hover { background-color: var(--theme-toggle-btn-hover-bg); }
     </style>
 </head>
 <body>
@@ -126,7 +141,9 @@
         </div>
 
         <div class="input-area"> <form @submit.prevent="addTask"> <input type="text" id="task-input" :placeholder="'Adicionar tarefa para ' + selectedDayName + '...'" v-model="newTaskText"> <button id="add-task-btn" type="submit">Adicionar</button> </form> </div>
+        
         <div class="week-tabs"> <button v-for="day in days" :key="day.id" class="tab" :class="{ active: selectedDay === day.id }" @click="selectDay(day.id)"> {{ day.shortName }} <span v-if="tasksByDay[day.id] && tasksByDay[day.id].length > 0">({{ tasksByDay[day.id].length }})</span> </button> </div>
+        
         <div class="view-filters"> <button class="filter-btn" :class="{ active: currentFilter === 'all' }" @click="currentFilter = 'all'">Todas</button> <button class="filter-btn" :class="{ active: currentFilter === 'active' }" @click="currentFilter = 'active'">Ativas</button> <button class="filter-btn" :class="{ active: currentFilter === 'completed' }" @click="currentFilter = 'completed'">Concluídas</button> </div>
         
         <ul id="task-list">
@@ -146,7 +163,7 @@
         
         <div class="footer-controls">
             <div class="footer-buttons">
-                <button id="history-btn" @click="isLogVisible = true">Histórico</button>
+                <button id="history-btn" @click="toggleLogVisibility">Histórico</button>
                 <button id="legend-btn" @click="isLegendVisible = true" aria-label="Legenda"><svg viewBox="0 0 24 24"><path d="M11,18H13V16H11V18M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,6C9.79,6 8,7.79 8,10H10C10,8.9 10.9,8 12,8C13.1,8 14,8.9 14,10C14,12 11,11.75 11,15H13C13,12.75 16,12.5 16,10C16,7.79 14.21,6 12,6Z"></path></svg></button>
             </div>
             <div class="datetime-container">
@@ -155,200 +172,85 @@
             </div>
         </div>
 
-        <div class="modal-overlay" v-if="isLogVisible"><div class="modal-content"><button class="modal-close-btn" @click="isLogVisible = false">X</button><h2>Histórico de Atividades</h2><ul><li v-for="log in activityLog" :key="log.id"><span>[{{ log.timestamp }}]</span><strong>{{ log.action }}:</strong><span>{{ log.details }}</span></li></ul><p v-if="activityLog.length === 0">Nenhuma atividade registrada.</p></div></div>
-        <div class="modal-overlay" v-if="isLegendVisible"><div class="modal-content"><button class="modal-close-btn" @click="isLegendVisible = false">X</button><h2>Legenda</h2><ul class="legend-list"><li class="legend-item"><div class="legend-icon edit-btn"><svg viewBox="0 0 24 24"><path d="M20.71,7.04C21.1,6.65 21.1,6.02 20.71,5.63L18.37,3.29C17.98,2.9 17.35,2.9 16.96,3.29L15.12,5.12L18.87,8.87M3,17.25V21H6.75L17.81,9.93L14.06,6.18L3,17.25Z"></path></svg></div><span>Editar o texto de uma tarefa existente.</span></li><li class="legend-item"><div class="legend-icon postpone-btn"><svg viewBox="0 0 24 24"><path d="M4,5V19L11,12M18,5V19H20V5M11,5V19L18,12"></path></svg></div><span>Adiar a tarefa para o dia seguinte.</span></li><li class="legend-item"><div class="legend-icon delete-btn" style="padding: 5px 12px;">X</div><span>Excluir permanentemente a tarefa.</span></li></ul></div></div>
+        <div class="modal-overlay" v-if="isLogVisible"><div id="log-content" class="modal-content"><button class="modal-close-btn" @click="toggleLogVisibility">X</button><h2>Histórico de Atividades</h2><ul><li v-for="log in activityLog" :key="log.id"><span>[{{ log.timestamp }}]</span><strong>{{ log.action }}:</strong><span>{{ log.details }}</span></li></ul><button v-if="activityLog.length > 10" class="filter-btn back-to-top-btn" @click="scrollToTop('log-content')">Voltar ao Topo</button><p v-if="activityLog.length === 0">Nenhuma atividade registrada.</p></div></div>
+        <div class="modal-overlay" v-if="isLegendVisible"><div class="modal-content"><button class="modal-close-btn" @click="isLegendVisible = false">X</button><h2>Legenda:</h2><ul class="legend-list"><li class="legend-item"><div class="legend-icon edit-btn"><svg viewBox="0 0 24 24"><path d="M20.71,7.04C21.1,6.65 21.1,6.02 20.71,5.63L18.37,3.29C17.98,2.9 17.35,2.9 16.96,3.29L15.12,5.12L18.87,8.87M3,17.25V21H6.75L17.81,9.93L14.06,6.18L3,17.25Z"></path></svg></div><span>Editar o texto de uma tarefa existente.</span></li><li class="legend-item"><div class="legend-icon postpone-btn"><svg viewBox="0 0 24 24"><path d="M4,5V19L11,12M18,5V19H20V5M11,5V19L18,12"></path></svg></div><span>Adiar a tarefa para o dia seguinte.</span></li><li class="legend-item"><div class="legend-icon delete-btn" style="padding: 5px 12px;">X</div><span>Excluir permanentemente a tarefa.</span></li></ul></div></div>
         <div class="modal-overlay" v-if="isPlanningPromptVisible"><div class="modal-content planning-prompt-content"><h2>Comece a Nova Semana!</h2><p>Planeje sua semana com antecedência para ter mais produtividade.</p><button class="filter-btn active" style="margin-top: 20px;" @click="dismissPlanningPrompt">Começar a planejar</button></div></div>
     </div>
 
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
 
     <script>
+        /**
+         * Script principal da aplicação Vue.js para o Planejador Semanal.
+         * Estruturado em um único objeto para clareza e manutenibilidade.
+         */
         const { createApp } = Vue;
 
         createApp({
-            /**
-             * O método data() define o estado inicial da aplicação.
-             * Todas as propriedades aqui são reativas, ou seja, se mudarem, a interface será atualizada.
-             */
+            // Define o estado inicial e reativo da aplicação.
             data() {
                 return {
-                    // Estrutura principal que armazena as tarefas, organizadas por dia.
                     tasksByDay: { dom: [], seg: [], ter: [], qua: [], qui: [], sex: [], sab: [] },
-                    // Array de configuração para os dias da semana (usado nas abas e lógica).
                     days: [
                         { id: 'dom', name: 'Domingo', shortName: 'Dom' }, { id: 'seg', name: 'Segunda', shortName: 'Seg' },
                         { id: 'ter', name: 'Terça',   shortName: 'Ter' }, { id: 'qua', name: 'Quarta',  shortName: 'Qua' },
                         { id: 'qui', name: 'Quinta',  shortName: 'Qui' }, { id: 'sex', name: 'Sexta',   shortName: 'Sex' },
                         { id: 'sab', name: 'Sábado',  shortName: 'Sáb' }
                     ],
-                    selectedDay: 'seg', // ID do dia atualmente selecionado.
-                    currentFilter: 'all', // Filtro de visualização ativo ('all', 'active', 'completed').
-                    activityLog: [], // Array que armazena o histórico de ações.
-                    isLogVisible: false, // Controla a visibilidade do modal de histórico.
-                    isLegendVisible: false, // Controla a visibilidade do modal de legenda.
-                    isPlanningPromptVisible: false, // Controla a visibilidade do pop-up de planejamento.
-                    lastWeeklyReset: null, // Timestamp do último reset semanal para controle.
-                    lastPlanningPrompt: null, // Timestamp do último pop-up de planejamento exibido.
-                    newTaskText: '', // Texto do campo de input para nova tarefa.
-                    isDarkMode: false, // Controla o tema da aplicação.
-                    currentDate: '', // String para a data (DD/MM).
-                    currentTime: '', // String para a hora (HH:MM:SS).
-                    clockInterval: null // Referência do timer do relógio para poder limpá-lo.
+                    selectedDay: 'seg',
+                    currentFilter: 'all', 
+                    activityLog: [],
+                    isLogVisible: false,
+                    isLegendVisible: false,
+                    isPlanningPromptVisible: false,
+                    lastWeeklyReset: null,
+                    lastPlanningPrompt: null,
+                    newTaskText: '',
+                    isDarkMode: false,
+                    currentDate: '', 
+                    currentTime: '',
+                    clockInterval: null
                 };
             },
-
-            /**
-             * Propriedades computadas são "cálculos" que dependem de outras propriedades.
-             * Elas são eficientes pois só são recalculadas quando suas dependências mudam.
-             */
+            
+            // Propriedades calculadas que se atualizam automaticamente quando suas dependências mudam.
             computed: {
                 themeButtonText() { return this.isDarkMode ? 'Modo Claro' : 'Dark Mode'; },
                 selectedDayName() { return this.days.find(d => d.id === this.selectedDay)?.name || ''; },
-                
-                // Esta é a propriedade central para a exibição das tarefas.
-                // Ela pega as tarefas do dia selecionado e aplica o filtro de visualização.
                 filteredTasks() {
                     const tasks = this.tasksByDay[this.selectedDay] || [];
                     if (this.currentFilter === 'active') { return tasks.filter(task => !task.completed); }
                     if (this.currentFilter === 'completed') { return tasks.filter(task => task.completed); }
-                    return tasks; // 'all'
+                    return tasks;
                 }
             },
 
-            /**
-             * Watchers observam mudanças em uma propriedade específica e executam uma função.
-             */
             watch: {
-                // Sempre que 'isDarkMode' mudar, esta função é chamada para adicionar/remover a classe do body.
                 isDarkMode(newVal) { document.body.classList.toggle('dark-mode', newVal); }
             },
 
-            /**
-             * Methods contém todas as funções que controlam a lógica da aplicação.
-             */
             methods: {
-                /**
-                 * Esconde o pop-up de planejamento e salva o timestamp para não mostrar novamente no mesmo domingo.
-                 */
-                dismissPlanningPrompt() {
-                    this.isPlanningPromptVisible = false;
-                    this.lastPlanningPrompt = Date.now();
-                    this.saveState();
-                },
-
-                /**
-                 * Altera o dia selecionado e reseta o filtro de visualização para 'Todas'.
-                 * @param {string} dayId - O ID do dia a ser selecionado (ex: 'seg').
-                 */
-                selectDay(dayId) { this.selectedDay = dayId; this.currentFilter = 'all'; },
-
-                /**
-                 * Adiciona uma nova tarefa à lista do dia atualmente selecionado.
-                 */
-                addTask() {
-                    const text = this.newTaskText.trim(); if (text === '') return;
-                    const newTask = { id: Date.now(), text, createdAt: new Date().toISOString(), completed: false, editing: false };
-                    this.tasksByDay[this.selectedDay].unshift(newTask);
-                    this.logActivity('Adicionada', `'${text}' (para ${this.selectedDayName})`);
-                    this.newTaskText = ''; this.saveState();
-                },
-
-                /**
-                 * Deleta uma tarefa, procurando-a em todos os dias da semana.
-                 * @param {number} taskId - O ID da tarefa a ser deletada.
-                 */
-                deleteTask(taskId) {
-                    for (const dayId in this.tasksByDay) {
-                        const taskIndex = this.tasksByDay[dayId].findIndex(t => t.id === taskId);
-                        if (taskIndex !== -1) {
-                            const taskToDelete = this.tasksByDay[dayId][taskIndex];
-                            const dayName = this.days.find(d => d.id === dayId)?.name;
-                            this.logActivity('Excluída', `'${taskToDelete.text}' (de ${dayName})`);
-                            this.tasksByDay[dayId].splice(taskIndex, 1); this.saveState(); return;
-                        }
-                    }
-                },
-
-                /**
-                 * Move uma tarefa para o dia seguinte na semana.
-                 * @param {number} taskId - O ID da tarefa a ser adiada.
-                 */
-                postponeTask(taskId) {
-                    let taskToMove, currentDayId;
-                    for (const dayId in this.tasksByDay) {
-                        const taskIndex = this.tasksByDay[dayId].findIndex(t => t.id === taskId);
-                        if (taskIndex !== -1) {
-                            taskToMove = this.tasksByDay[dayId].splice(taskIndex, 1)[0]; currentDayId = dayId; break;
-                        }
-                    }
-                    if (taskToMove) {
-                        const currentDayIndex = this.days.findIndex(d => d.id === currentDayId);
-                        const nextDayIndex = (currentDayIndex + 1) % this.days.length;
-                        const nextDayId = this.days[nextDayIndex].id;
-                        this.tasksByDay[nextDayId].unshift(taskToMove);
-                        const currentDayName = this.days[currentDayIndex].name; const nextDayName = this.days[nextDayIndex].name;
-                        this.logActivity('Adiada', `'${taskToMove.text}' de ${currentDayName} para ${nextDayName}`);
-                        this.saveState();
-                    }
-                },
+                // --- Métodos de Controle da Interface ---
                 
+                dismissPlanningPrompt() { this.isPlanningPromptVisible = false; this.lastPlanningPrompt = Date.now(); this.saveState(); },
+                selectDay(dayId) { this.selectedDay = dayId; this.currentFilter = 'all'; },
+                toggleTheme() { this.isDarkMode = !this.isDarkMode; this.saveState(); },
+                toggleLogVisibility() { this.isLogVisible = !this.isLogVisible; if (this.isLogVisible) { this.$nextTick(() => { this.scrollToTop('log-content'); }); } },
+                scrollToTop(elementId) { const element = document.getElementById(elementId); if (element) { element.scrollTop = 0; } },
+
+                // --- Métodos de Gerenciamento de Tarefas (CRUD) ---
+
+                addTask() { const text = this.newTaskText.trim(); if (text === '') return; const newTask = { id: Date.now(), text, createdAt: new Date().toISOString(), completed: false, editing: false }; this.tasksByDay[this.selectedDay].unshift(newTask); this.logActivity('Adicionada', `'${text}' (para ${this.selectedDayName})`); this.newTaskText = ''; this.saveState(); },
+                deleteTask(taskId) { for (const dayId in this.tasksByDay) { const taskIndex = this.tasksByDay[dayId].findIndex(t => t.id === taskId); if (taskIndex !== -1) { const taskToDelete = this.tasksByDay[dayId][taskIndex]; const dayName = this.days.find(d => d.id === dayId)?.name; this.logActivity('Excluída', `'${taskToDelete.text}' (de ${dayName})`); this.tasksByDay[dayId].splice(taskIndex, 1); this.saveState(); return; } } },
+                postponeTask(taskId) { let taskToMove, currentDayId; for (const dayId in this.tasksByDay) { const taskIndex = this.tasksByDay[dayId].findIndex(t => t.id === taskId); if (taskIndex !== -1) { taskToMove = this.tasksByDay[dayId].splice(taskIndex, 1)[0]; currentDayId = dayId; break; } } if (taskToMove) { const currentDayIndex = this.days.findIndex(d => d.id === currentDayId); const nextDayIndex = (currentDayIndex + 1) % this.days.length; const nextDayId = this.days[nextDayIndex].id; this.tasksByDay[nextDayId].unshift(taskToMove); const currentDayName = this.days[currentDayIndex].name; const nextDayName = this.days[nextDayIndex].name; this.logActivity('Adiada', `'${taskToMove.text}' de ${currentDayName} para ${nextDayName}`); this.saveState(); } },
                 toggleTaskCompleted(task) { if (task.editing) return; task.completed = !task.completed; const action = task.completed ? 'Concluída' : 'Reaberta'; this.logActivity(action, `'${task.text}'`); this.saveState(); },
                 editTask(task) { this.filteredTasks.forEach(t => { t.editing = false }); if (task.completed) return; task.originalText = task.text; task.editing = true; },
-                saveEdit(task) { if (!task.editing) return; const newText = task.text.trim(); if (newText === '') { task.text = task.originalText; } else if (newText !== task.originalText) { this.logActivity('Editada', `de "${task.originalText}" para "${newText}"`); task.text = newText; } delete task.originalText; task.editing = false; this.saveState(); },
+                saveEdit(task) { if (task.editing) { const newText = task.text.trim(); if (newText === '') { task.text = task.originalText; } else if (newText !== task.originalText) { this.logActivity('Editada', `de "${task.originalText}" para "${newText}"`); task.text = newText; } delete task.originalText; task.editing = false; this.saveState(); } },
                 cancelEdit(task) { task.text = task.originalText; delete task.originalText; task.editing = false; },
-                toggleTheme() { this.isDarkMode = !this.isDarkMode; this.saveState(); },
 
-                /**
-                 * Adiciona uma nova entrada ao topo do histórico de atividades.
-                 * @param {string} action - A ação realizada (ex: 'Adicionada').
-                 * @param {string} details - Os detalhes da ação (ex: "'Fazer compras'").
-                 */
-                logActivity(action, details) { this.activityLog.unshift({ id: Date.now(), timestamp: new Date().toLocaleString('pt-BR'), action, details }); },
+                // --- Métodos de Gerenciamento de Estado e Ciclo de Vida ---
                 
-                /**
-                 * Remove tarefas com mais de 30 dias.
-                 */
-                handleOldTasks() { const thirtyDaysInMs = 30 * 24 * 60 * 60 * 1000; const now = new Date(); for (const day in this.tasksByDay) { const dayName = this.days.find(d => d.id === day)?.name || day; this.tasksByDay[day] = this.tasksByDay[day].filter(task => { if (now - new Date(task.createdAt) > thirtyDaysInMs) { this.logActivity('Expirada', `'${task.text}' (removida de ${dayName})`); return false; } return true; }); } },
-                
-                /**
-                 * Remove entradas do histórico com mais de 7 dias.
-                 */
-                handleOldLogEntries() { const sevenDaysInMs = 7 * 24 * 60 * 60 * 1000; const now = new Date(); this.activityLog = this.activityLog.filter(log => (now - log.id) < sevenDaysInMs); },
-                
-                /**
-                 * Executa a limpeza da semana anterior, logando tarefas incompletas e preservando
-                 * as tarefas recentes adiadas para o domingo da nova semana.
-                 * @param {number} resetTime - O timestamp do início do domingo que disparou o reset.
-                 */
-                resetWeek(resetTime) {
-                    const sevenDaysInMs = 7 * 24 * 60 * 60 * 1000;
-                    const tasksForNewWeek = this.tasksByDay.dom.filter(task => {
-                        const taskCreationTime = new Date(task.createdAt).getTime();
-                        if ((resetTime - taskCreationTime) < sevenDaysInMs) { return true; }
-                        if (!task.completed) { this.logActivity('Não Concluída', `'${task.text}' (do Domingo passado)`); }
-                        return false;
-                    });
-                    const daysToClear = ['seg', 'ter', 'qua', 'qui', 'sex', 'sab'];
-                    daysToClear.forEach(dayId => {
-                        const dayName = this.days.find(d => d.id === dayId)?.name;
-                        this.tasksByDay[dayId].forEach(task => { if (!task.completed) { this.logActivity('Não Concluída', `'${task.text}' (da ${dayName} anterior)`); } });
-                    });
-                    this.tasksByDay = { dom: tasksForNewWeek, seg: [], ter: [], qua: [], qui: [], sex: [], sab: [] };
-                    this.logActivity('Sistema', 'Reset semanal concluído. Boa semana!');
-                },
-
-                /**
-                 * Salva o estado completo da aplicação no localStorage.
-                 */
-                saveState() {
-                    const appState = { tasksByDay: this.tasksByDay, log: this.activityLog, theme: this.isDarkMode ? 'dark' : 'light', lastWeeklyReset: this.lastWeeklyReset, lastPlanningPrompt: this.lastPlanningPrompt };
-                    localStorage.setItem('plannerAppState', JSON.stringify(appState));
-                },
-
-                /**
-                 * Carrega o estado da aplicação do localStorage ao iniciar.
-                 * Também contém a lógica para disparar o reset semanal e o pop-up de planejamento.
-                 */
+                saveState() { const appState = { tasksByDay: this.tasksByDay, log: this.activityLog, theme: this.isDarkMode ? 'dark' : 'light', lastWeeklyReset: this.lastWeeklyReset, lastPlanningPrompt: this.lastPlanningPrompt }; localStorage.setItem('plannerAppState', JSON.stringify(appState)); },
                 loadState() {
                     const savedState = localStorage.getItem('plannerAppState');
                     if (savedState) {
@@ -359,51 +261,31 @@
                             this.lastWeeklyReset = appState.lastWeeklyReset || null;
                             this.lastPlanningPrompt = appState.lastPlanningPrompt || null;
                             const loadedTasks = appState.tasksByDay || {};
-                            for (const dayId of this.days.map(d => d.id)) {
-                                this.tasksByDay[dayId] = (loadedTasks[dayId] || []).map(task => ({ ...task, editing: false }));
-                            }
+                            for (const dayId of this.days.map(d => d.id)) { this.tasksByDay[dayId] = (loadedTasks[dayId] || []).map(task => ({ ...task, editing: false })); }
                         } catch (e) { console.error("Erro ao carregar estado:", e); }
                     }
-                    
                     const now = new Date();
                     const lastSunday = new Date();
                     lastSunday.setDate(now.getDate() - now.getDay()); 
-                    lastSunday.setHours(0, 1, 0, 0); 
-                    
-                    // Lógica para disparar o reset semanal.
-                    if (!this.lastWeeklyReset || this.lastWeeklyReset < lastSunday.getTime()) {
-                        if (this.lastWeeklyReset) { this.resetWeek(lastSunday.getTime()); }
-                        this.lastWeeklyReset = now.getTime();
-                    }
-                    
-                    // Lógica para disparar o pop-up de planejamento de domingo.
-                    if (now.getDay() === 0 && (!this.lastPlanningPrompt || this.lastPlanningPrompt < lastSunday.getTime())) {
-                        this.isPlanningPromptVisible = true;
-                    }
-
+                    lastSunday.setHours(0, 0, 0, 0); 
+                    if (!this.lastWeeklyReset || this.lastWeeklyReset < lastSunday.getTime()) { if (this.lastWeeklyReset) { this.resetWeek(lastSunday.getTime()); } this.lastWeeklyReset = now.getTime(); }
+                    if (now.getDay() === 0 && (!this.lastPlanningPrompt || this.lastPlanningPrompt < lastSunday.getTime())) { this.isPlanningPromptVisible = true; }
                     this.selectedDay = this.days[now.getDay()].id;
                     this.handleOldTasks();
                     this.handleOldLogEntries(); 
                     this.saveState();
                 },
 
-                /**
-                 * Atualiza as variáveis de data e hora a cada segundo.
-                 */
-                updateClock() {
-                    const now = new Date();
-                    const day = String(now.getDate()).padStart(2, '0'); const month = String(now.getMonth() + 1).padStart(2, '0');
-                    const hours = String(now.getHours()).padStart(2, '0'); const minutes = String(now.getMinutes()).padStart(2, '0'); const seconds = String(now.getSeconds()).padStart(2, '0');
-                    this.currentDate = `${day}/${month}`;
-                    this.currentTime = `${hours}:${minutes}:${seconds}`;
-                }
+                // --- Métodos Utilitários e de Limpeza ---
+
+                logActivity(action, details) { this.activityLog.unshift({ id: Date.now(), timestamp: new Date().toLocaleString('pt-BR'), action, details }); },
+                handleOldTasks() { const thirtyDaysInMs = 30 * 24 * 60 * 60 * 1000; const now = new Date(); for (const day in this.tasksByDay) { const dayName = this.days.find(d => d.id === day)?.name || day; this.tasksByDay[day] = this.tasksByDay[day].filter(task => { if (now - new Date(task.createdAt) > thirtyDaysInMs) { this.logActivity('Expirada', `'${task.text}' (removida de ${dayName})`); return false; } return true; }); } },
+                handleOldLogEntries() { const sevenDaysInMs = 7 * 24 * 60 * 60 * 1000; const now = new Date(); this.activityLog = this.activityLog.filter(log => (now - log.id) < sevenDaysInMs); },
+                resetWeek(resetTime) { const sevenDaysInMs = 7 * 24 * 60 * 60 * 1000; const tasksForNewWeek = this.tasksByDay.dom.filter(task => { const taskCreationTime = new Date(task.createdAt).getTime(); if ((resetTime - taskCreationTime) < sevenDaysInMs) { return true; } if (!task.completed) { this.logActivity('Não Concluída', `'${task.text}' (do Domingo passado)`); } return false; }); const daysToClear = ['seg', 'ter', 'qua', 'qui', 'sex', 'sab']; daysToClear.forEach(dayId => { const dayName = this.days.find(d => d.id === dayId)?.name; this.tasksByDay[dayId].forEach(task => { if (!task.completed) { this.logActivity('Não Concluída', `'${task.text}' (da ${dayName} anterior)`); } }); }); this.tasksByDay = { dom: tasksForNewWeek, seg: [], ter: [], qua: [], qui: [], sex: [], sab: [] }; this.logActivity('Sistema', 'Reset semanal concluído. Boa semana!'); },
+                updateClock() { const now = new Date(); const day = String(now.getDate()).padStart(2, '0'); const month = String(now.getMonth() + 1).padStart(2, '0'); const hours = String(now.getHours()).padStart(2, '0'); const minutes = String(now.getMinutes()).padStart(2, '0'); const seconds = String(now.getSeconds()).padStart(2, '0'); this.currentDate = `${day}/${month}`; this.currentTime = `${hours}:${minutes}:${seconds}`; },
             },
-            
-            /**
-             * Hooks do ciclo de vida do Vue.
-             * mounted() é chamado quando o componente é inserido na página.
-             * beforeUnmount() é chamado pouco antes de o componente ser removido.
-             */
+
+            // Hooks do ciclo de vida da aplicação
             mounted() { this.loadState(); this.updateClock(); this.clockInterval = setInterval(this.updateClock, 1000); },
             beforeUnmount() { clearInterval(this.clockInterval); }
         }).mount('#app');
