@@ -100,3 +100,4 @@ This structure makes it easy to:
 - Add state management
 - Integrate with build tools later
 - Add TypeScript support # Estudos-VueCDN1-
+# Estudos-VueCDN1-
