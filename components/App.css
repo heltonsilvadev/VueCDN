@@ -1,0 +1,172 @@
+/*
+ * ===============================================
+ * ESTILOS GERAIS E VARIÁVEIS DE TEMA (CSS)
+ * ===============================================
+*/
+:root {
+    --bg-color: #f4f4f4;
+    --container-bg-color: #fff;
+    --text-color: #333;
+    --box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    --input-border-color: #ddd;
+    --add-btn-bg: #007bff;
+    --add-btn-hover-bg: #0056b3;
+    --list-item-bg: #f9f9f9;
+    --list-item-border: #eee;
+    --completed-text-color: #888;
+    --completed-bg: #e0e0e0;
+    --edit-btn-bg: #28a745;
+    --edit-btn-hover-bg: #218838;
+    --delete-btn-bg: #dc3545;
+    --delete-btn-hover-bg: #c82333;
+    --theme-toggle-btn-bg: #6c757d;
+    --theme-toggle-btn-hover-bg: #5a6268;
+    --checkbox-border: #ccc;
+    --checkbox-bg: #fff;
+    --checkbox-checked-color: #28a745; 
+    --save-btn-bg: var(--add-btn-bg);
+    --save-btn-hover-bg: var(--add-btn-hover-bg);
+}
+
+body.dark-mode {
+    --bg-color: #2c2c2c;
+    --container-bg-color: #3a3a3a;
+    --text-color: #e0e0e0;
+    --box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+    --input-border-color: #555;
+    --add-btn-bg: #4a90e2;
+    --add-btn-hover-bg: #357ABD;
+    --list-item-bg: #4a4a4a;
+    --list-item-border: #5a5a5a;
+    --completed-text-color: #b0b0b0;
+    --completed-bg: #5a5a5a;
+    --edit-btn-bg: #34c759;
+    --edit-btn-hover-bg: #2ca349;
+    --delete-btn-bg: #e74c3c;
+    --delete-btn-hover-bg: #c0392b;
+    --theme-toggle-btn-bg: #495057;
+    --theme-toggle-btn-hover-bg: #343a40;
+    --checkbox-border: #777;
+    --checkbox-bg: #444;
+    --checkbox-checked-color: #34c759;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Container principal da aplicação (usado pelo template do App.js) */
+#app {
+    background-color: var(--container-bg-color);
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: var(--box-shadow);
+    width: 100%;
+    max-width: 500px;
+    text-align: center;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+h1 {
+    color: var(--text-color);
+    margin: 0;
+}
+
+#theme-toggle-btn {
+    padding: 8px 12px;
+    background-color: var(--theme-toggle-btn-bg);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#theme-toggle-btn:hover {
+    background-color: var(--theme-toggle-btn-hover-bg);
+}
+
+.input-area {
+    display: flex;
+    margin-bottom: 30px;
+}
+
+.input-area form {
+    display: flex;
+    width: 100%;
+}
+
+#task-input {
+    flex-grow: 1;
+    padding: 10px;
+    border: 1px solid var(--input-border-color);
+    border-radius: 4px;
+    outline: none;
+    background-color: var(--container-bg-color);
+    color: var(--text-color);
+    transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+}
+
+#task-input::placeholder {
+    color: var(--text-color);
+    opacity: 0.7;
+}
+
+#add-task-btn {
+    padding: 10px 15px;
+    background-color: var(--add-btn-bg);
+    color: white;
+    border: none;
+    border-radius: 0 4px 4px 0;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#add-task-btn:hover {
+    background-color: var(--add-btn-hover-bg);
+}
+
+#task-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.clock-container {
+    margin-top: 25px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.clock-display {
+    color: var(--text-color);
+    font-size: 0.9em;
+    opacity: 0.8;
+    background-color: var(--list-item-bg);
+    padding: 5px 10px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.clock-icon {
+    width: 1em;
+    height: 1em;
+    fill: currentColor;
+}
