@@ -99,4 +99,4 @@ This structure makes it easy to:
 - Implement proper routing
 - Add state management
 - Integrate with build tools later
-- Add TypeScript support 
+- Add TypeScript support # Estudos-VueCDN1-
